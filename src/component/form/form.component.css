@@ -1,0 +1,17 @@
+form {
+  margin: 0 auto;
+  width: 400px;
+}
+.form-button-container {
+  background-image: none;
+  margin: .5em 0 0 0;
+  padding: .3em 1em .5em .4em;
+  border: 1px solid #D5D5D5;
+  border-width: 1px 0 0 0;
+  background: #ffffff;
+  color: #222222;
+  text-align: center;
+}
+.form-container {
+
+}

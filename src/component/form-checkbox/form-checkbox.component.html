@@ -1,0 +1,6 @@
+<div class="ui-g">
+  <div [ngClass]="'ui-g-' + 12/question.items.length" class="nopadding" *ngFor="let item of question.items">
+    <p-checkbox [name]="question.key" [value]="item.value" [label]="item.label" [(ngModel)]="question.value"
+                   [disabled]="question.readonly"></p-checkbox>
+  </div>
+</div>

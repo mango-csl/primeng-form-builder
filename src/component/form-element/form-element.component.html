@@ -1,0 +1,14 @@
+<div class="ui-g">
+  <div class="ui-g-4" style="padding: 0.5em 0;text-align: right;line-height: 31px;">
+    <label [attr.for]="question.key">{{question.label + ':'}}</label>
+  </div>
+  <!--[ngClass]="{'error':formErrors[question.key] != ''&&formErrors[question.key] != undefined}"-->
+  <!--[ngClass]="{'error':question.validateErrors != ''&&question.validateErrors != undefined}"-->
+  <div class="ui-g-8" [ngSwitch]="question.controlType">
+    <app-form-input *ngSwitchCase="'textbox'" [question]="question"></app-form-input>
+    <app-form-radiobutton *ngSwitchCase="'radiobutton'" [question]="question"></app-form-radiobutton>
+    <app-form-checkbox *ngSwitchCase="'checkbox'" [question]="question"></app-form-checkbox>
+    <app-form-calendar *ngSwitchCase="'calendar'" [question]="question"></app-form-calendar>
+    <div *ngIf="question.validateErrors" [innerHtml]="question.validateErrors" class="alert alert-danger"></div>
+  </div>
+</div>

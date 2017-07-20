@@ -1,0 +1,31 @@
+.alert-danger {
+  background-color: #f2dede;
+  border-radius: 4px;
+  color: #a94442;
+  padding: 12px;
+}
+.form-input:hover,.form-input {
+  width: 100%;
+  margin-bottom: 1px;
+  border-left: 5px solid #42A948;
+  border-left: 5px solid #42A948;
+}
+
+.error .form-input{
+  border-color: #f44336;
+  border-left: 5px solid #a94442;
+}
+
+.form-control-feedback {
+  position: absolute;
+  top: 0;
+  right: 0;
+  right: 15px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  pointer-events: none;
+}

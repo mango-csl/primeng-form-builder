@@ -1,0 +1,14 @@
+<!--<form (ngSubmit)="onSubmit()" [formGroup]="form">-->
+
+  <div class="form-container">
+    <app-form-element *ngFor="let question of questions" [question]="question"></app-form-element>
+    <!--[form]="form"-->
+  </div>
+  <footer>
+    <div class="form-button-container" *ngIf="operateOption.type != 'query'">
+      <button  pButton class="button-main" label="保存" type="button" (click)="onSubmit()"></button>
+      <!--[disabled]="!formState()"-->
+      <button  pButton class="button-main" label="取消" type="button" (click)="cancel.emit()"></button>
+    </div>
+  </footer>
+<!--</form>-->

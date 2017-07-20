@@ -1,0 +1,3 @@
+<input [id]="question.key" [type]="question.type" [readonly]="question.readonly" autocomplete="off" pInputText
+       [ngClass]="{'error':question.validateErrors != ''&&question.validateErrors != undefined}" class="form-input"
+       [placeholder]="question.placeholder" [(ngModel)]="value">

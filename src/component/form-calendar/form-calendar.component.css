@@ -1,0 +1,3 @@
+:host>>>.ui-calendar input {
+  width: calc(100% - 27px);
+}

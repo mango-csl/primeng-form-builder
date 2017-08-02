@@ -1,5 +1,5 @@
-import { QuestionBase } from '../../question-base';
 import {SelectItem} from "primeng/primeng";
+import {QuestionBase} from "../../question-base";
 
 export class RadiobuttonQuestion extends QuestionBase<string> {
   controlType = 'radiobutton';

@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
-import { QuestionService } from "../../question.service";
 import { CalendarQuestion } from "./question-calendar";
+import { QuestionService } from "../../question.service";
 export declare class FormCalendarComponent implements OnInit {
     private qS;
     china: any;

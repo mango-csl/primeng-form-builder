@@ -1,4 +1,4 @@
-import { QuestionBase } from '../../question-base';
+import { QuestionBase } from "../../question-base";
 export declare class CalendarQuestion extends QuestionBase<Date> {
     controlType: string;
     placeholder: string;

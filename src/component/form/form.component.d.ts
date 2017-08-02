@@ -10,8 +10,7 @@ export declare class FormComponent implements OnInit {
     cancel: EventEmitter<any>;
     constructor(qS: QuestionService);
     ngOnInit(): void;
-    validate(data: QuestionBase<any>): string;
-    beforSubmit(): void;
+    beforSubmit(questions: QuestionBase<any>[]): void;
     private formState();
     getFormData(): any;
     onSubmit(): void;

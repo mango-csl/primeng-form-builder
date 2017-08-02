@@ -6,9 +6,18 @@
   <!--[ngClass]="{'error':question.validateErrors != ''&&question.validateErrors != undefined}"-->
   <div class="ui-g-8" [ngSwitch]="question.controlType">
     <app-form-input *ngSwitchCase="'textbox'" [question]="question"></app-form-input>
+    <app-form-dropdown *ngSwitchCase="'dropdown'" [question]="question"></app-form-dropdown>
+    <app-form-image *ngSwitchCase="'image'" [question]="question"></app-form-image>
     <app-form-radiobutton *ngSwitchCase="'radiobutton'" [question]="question"></app-form-radiobutton>
     <app-form-checkbox *ngSwitchCase="'checkbox'" [question]="question"></app-form-checkbox>
+    <app-form-multiselect *ngSwitchCase="'multiselect'" [question]="question"></app-form-multiselect>
     <app-form-calendar *ngSwitchCase="'calendar'" [question]="question"></app-form-calendar>
-    <div *ngIf="question.validateErrors" [innerHtml]="question.validateErrors" class="alert alert-danger"></div>
+    <app-form-contextmenu *ngSwitchCase="'contextmenu'" [question]="question"></app-form-contextmenu>
+  </div>
+  <div class="ui-g-4 nopadding"></div>
+  <div class="ui-g-8" style="padding: 0 0.5em">
+    <div *ngIf="question.validateErrors" class="alert alert-danger">
+      <span [innerHtml]="question.validateErrors"></span>
+    </div>
   </div>
 </div>

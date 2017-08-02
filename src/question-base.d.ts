@@ -1,5 +1,6 @@
 import { Subject } from "rxjs/Subject";
 export declare class QuestionBase<T> {
+    parent: QuestionBase<T>[];
     value: T;
     key: string;
     label: string;
@@ -9,10 +10,7 @@ export declare class QuestionBase<T> {
     type: string;
     validateFn: validateFn[];
     validateErrors: string;
-    subject: Subject<any>;
-    observer: Subject<any>;
-    observer_key: any[];
-    param: any;
+    questionSubject: QuestionSubject;
     constructor(options?: {
         value?: T;
         key?: string;
@@ -23,10 +21,7 @@ export declare class QuestionBase<T> {
         readonly?: boolean;
         validateFn?: validateFn[];
         validateErrors?: string;
-        subject?: Subject<any>;
-        observer?: Subject<any>;
-        param?: any;
-        observer_key?: any[];
+        questionSubject?: QuestionSubject;
     });
 }
 export declare class validateFn {
@@ -34,10 +29,34 @@ export declare class validateFn {
     param: any;
 }
 export interface GetOptions<T> {
-    getOptions(param?: RequestParam): Promise<T[]>;
-    loadOptions(param?: any): Promise<T[]>;
 }
-export declare class RequestParam {
-    url: string;
-    condition: any;
+export declare class QuestionSubject {
+    subject: Subject<any>;
+    observer: Subject<any>;
+    observer_key: any[];
+    subject_param: any;
+}
+export declare class QuestionDataSource {
+    allowEmpty: boolean;
+    unWanted: string[];
+    emptyText: string;
+    constructor(options?: {
+        allowEmpty?: boolean;
+        unWanted?: string[];
+        emptyText?: string;
+    });
+}
+export declare class QuestionEnummap extends QuestionDataSource {
+    enumType: string;
+    loader: GetOptions<any[]>;
+    loaderFn: string;
+    constructor(options?: {});
+}
+export declare class QuestionLoader extends QuestionDataSource {
+    loader: GetOptions<any[]>;
+    loaderFn: string;
+    param: any;
+    displayField: string;
+    valueField: string;
+    constructor(options?: {});
 }

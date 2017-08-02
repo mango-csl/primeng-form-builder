@@ -14,22 +14,25 @@ var QuestionService = (function () {
     function QuestionService() {
         // 验证规则
         this.judge = {
-            'numberRange': function (value, param) {
+            'numberRange': function (question, param) {
+                var value = question.value;
                 // this.formErrors[this.question.key] = '';
                 var re = /^-?[1-9]\d*|0$/; //初步正则匹配
                 if (!re.test(value)) {
+                    // if(value !== '-'){
                     // this.formErrors[this.question.key] += '*请输入数字' + '<BR/>';
                     return '*请输入数字' + '<BR/>';
+                    // }
                 }
                 value = Number(value);
                 if (param) {
-                    if (param.min) {
+                    if (param.min !== undefined) {
                         if (value < param.min) {
                             // this.formErrors[this.question.key] += '*请输入大于' + param.min + '的数字' + '<BR/>';
                             return '*请输入大于' + param.min + '的数字' + '<BR/>';
                         }
                     }
-                    if (param.max) {
+                    if (param.max !== undefined) {
                         if (value > param.max) {
                             // this.formErrors[this.question.key] += '*请输入小于' + param.max + '的数字' + '<BR/>';
                             return '*请输入小于' + param.max + '的数字' + '<BR/>';
@@ -38,47 +41,41 @@ var QuestionService = (function () {
                 }
                 return '';
             },
-            'phone': function (value) {
+            'phone': function (question, param) {
+                var value = question.value;
                 var MOBILE_REGEXP = /^1[0-9]{10,10}$/;
                 if (!MOBILE_REGEXP.test(value)) {
                     // this.formErrors[this.question.key] += '*请输入数字' + '<BR/>';
                     return '*请输入正确的手机号码' + '<BR/>';
                 }
+            },
+            'customize': function (question, param) {
+                return param.fn(question.parent);
             }
         };
     }
     QuestionService.prototype.beiginValidate = function (question) {
         var text = '';
-        if (question.value === '' || question.value === undefined || question.value === null) {
-            return '*必填项' + '<BR/>';
+        if (question.required || question.validateFn.length > 0) {
+            if (this.judgeIsEmpty(question.value)) {
+                text = '*必填项' + '<BR/>';
+            }
+            else {
+                for (var _i = 0, _a = question.validateFn; _i < _a.length; _i++) {
+                    var key = _a[_i];
+                    if (!!this.judge[key.name]) {
+                        text += this.judge[key.name](question, key.param);
+                    }
+                }
+            }
         }
-        for (var _i = 0, _a = question.validateFn; _i < _a.length; _i++) {
-            var key = _a[_i];
-            if (!!this.judge[key.name])
-                text += this.judge[key.name](question.value, key.param);
-        }
-        return text;
+        question.validateErrors = text;
     };
     QuestionService.prototype.valueValidate = function (value, question) {
         if (value !== question.value) {
             question.value = value;
-            if (question.required || question.validateFn.length > 0) {
-                question.validateErrors = this.beiginValidate(question); //开始自定义函数验证
-            }
+            this.beiginValidate(question); //开始自定义函数验证
             this.sendMesAfterChange(question);
-            // if (question.validateErrors == '') {
-            //   if (question.subject) {
-            //     //添加参数
-            //     question.param[question.key] = value;
-            //     question.subject.next(question.param);
-            //   }
-            // } else {
-            //   if (question.subject) {
-            //     //添加参数
-            //     question.param[question.key] = null;
-            //     question.subject.next(question.param);
-            //   }
-            // }
         }
         return question;
     };
@@ -121,11 +118,14 @@ var QuestionService = (function () {
     };
     //值改变后向相关联的组件发送消息
     QuestionService.prototype.sendMesAfterChange = function (question) {
-        if (question.subject) {
-            var send_data = question.validateErrors == '' ? question.value : null;
-            //添加参数
-            question.param[question.key] = send_data;
-            question.subject.next(question.param);
+        var subject_option = question.questionSubject;
+        if (subject_option) {
+            if (subject_option.subject) {
+                var send_data = question.validateErrors == '' ? question.value : null;
+                //添加参数
+                subject_option.subject_param[question.key] = send_data;
+                subject_option.subject.next(subject_option.subject_param);
+            }
         }
     };
     return QuestionService;

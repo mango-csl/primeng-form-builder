@@ -35,30 +35,37 @@ var FormComponent = (function () {
                     data.value = null;
                     data.readonly = false;
                     data.validateErrors = '';
+                    data.parent = _this.questions;
                 });
                 break;
             case 'edit':
                 this.questions.forEach(function (data) {
                     data.value = _this.operateOption.data[data.key];
                     data.readonly = false;
-                    data.validateErrors = _this.validate(data);
+                    data.parent = _this.questions;
                 });
                 break;
         }
+        if (this.operateOption.type == 'edit') {
+            this.beforSubmit(this.questions);
+        }
     };
     // 表单赋值前验证
-    FormComponent.prototype.validate = function (data) {
-        var text = '';
-        if (data.required || data.validateFn.length > 0) {
-            text = this.qS.beiginValidate(data);
-        }
-        return text;
-    };
+    // validate(data:QuestionBase<any>){
+    //   // let text:string = ''
+    //   if(data.required|| data.validateFn.length > 0){
+    //     data.validateErrors = this.qS.beiginValidate(data);
+    //       // text = this.qS.beiginValidate(data);
+    //   }
+    //   // return text;
+    // }
     //表单提交前验证
-    FormComponent.prototype.beforSubmit = function () {
-        for (var _i = 0, _a = this.questions; _i < _a.length; _i++) {
-            var item = _a[_i];
-            item.validateErrors = this.validate(item);
+    FormComponent.prototype.beforSubmit = function (questions) {
+        for (var _i = 0, questions_1 = questions; _i < questions_1.length; _i++) {
+            var item = questions_1[_i];
+            // item.validateErrors =
+            //   this.validate(item);
+            this.qS.beiginValidate(item);
         }
     };
     //表单验证状态
@@ -87,11 +94,12 @@ var FormComponent = (function () {
         //     return false;
         //   }
         // }
-        this.beforSubmit();
+        this.beforSubmit(this.questions);
         if (this.formState()) {
             this.submitData.emit(this.getFormData());
         }
         else {
+            // this.msgService.showError("表单错误", "验证未通过");
             console.error("表单错误", "验证未通过");
         }
     };

@@ -1,0 +1,6 @@
+<input style="width:calc(100% - 32px)" class="pull-left" type="text" pInputText [ngModel]="showData"
+       [placeholder]="question.placeholder" readonly="readonly"/>
+<!--<button *ngIf="query.coName" style="margin: 0;position: absolute;right: 52px;" class="ui-button-warning" type="text" pButton (click)="_companyClear()"-->
+        <!--icon="fa-close"></button>-->
+<button pButton  type="text" class="pull-right" style="margin: 0" [disabled]="question.readonly"
+        (click)="showDialog()" [icon]="question.icon"></button>

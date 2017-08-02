@@ -24,7 +24,7 @@ var CalendarQuestion = (function (_super) {
         _this.timeOnly = options['timeOnly'] || false;
         _this.showIcon = options['showIcon'] || true;
         _this.minDate = options['minDate'] || null;
-        _this.maxDate = options['maxDate'] || new Date();
+        _this.maxDate = options['maxDate'] || null;
         _this.readonlyInput = options['readonlyInput'] || true;
         _this.dateFormat = options['dateFormat'] || 'yy-mm-dd';
         return _this;

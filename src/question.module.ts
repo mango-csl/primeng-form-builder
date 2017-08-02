@@ -8,7 +8,11 @@ import {
   FormCheckboxComponent,
   AppFormInputComponent,
   FormElementComponent,
-  FormRadiobuttonComponent
+  FormRadiobuttonComponent,
+  FormDropdownComponent,
+  FormMultiselectComponent,
+  FormImageComponent,
+  FormContextmenuComponent
 } from './component';
 
 const NGA_COMPONENTS = [
@@ -17,7 +21,11 @@ const NGA_COMPONENTS = [
   FormCheckboxComponent,
   AppFormInputComponent,
   FormElementComponent,
-  FormRadiobuttonComponent
+  FormRadiobuttonComponent,
+  FormDropdownComponent,
+  FormMultiselectComponent,
+  FormImageComponent,
+  FormContextmenuComponent
 ]
 
 import {QuestionService} from "./question.service";

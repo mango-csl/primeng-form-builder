@@ -17,7 +17,11 @@ var NGA_COMPONENTS = [
     component_1.FormCheckboxComponent,
     component_1.AppFormInputComponent,
     component_1.FormElementComponent,
-    component_1.FormRadiobuttonComponent
+    component_1.FormRadiobuttonComponent,
+    component_1.FormDropdownComponent,
+    component_1.FormMultiselectComponent,
+    component_1.FormImageComponent,
+    component_1.FormContextmenuComponent
 ];
 var question_service_1 = require("./question.service");
 var primeng_module_1 = require("./primeng/primeng.module");

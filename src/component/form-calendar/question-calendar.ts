@@ -1,5 +1,4 @@
-import { QuestionBase } from '../../question-base';
-
+import {QuestionBase} from "../../question-base";
 export class CalendarQuestion extends QuestionBase<Date> {
   controlType = 'calendar';
   placeholder:string;
@@ -22,7 +21,7 @@ export class CalendarQuestion extends QuestionBase<Date> {
     this.timeOnly = options['timeOnly'] || false;
     this.showIcon = options['showIcon'] || true;
     this.minDate = options['minDate'] || null;
-    this.maxDate = options['maxDate'] || new Date();
+    this.maxDate = options['maxDate'] || null;
     this.readonlyInput = options['readonlyInput'] || true;
     this.dateFormat = options['dateFormat'] || 'yy-mm-dd';
   }

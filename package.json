@@ -1,6 +1,6 @@
 {
   "name": "primeng-form-builder",
-  "version": "1.0.3",
+  "version": "1.1.1",
   "description": "a form for admin system,depend on primeng",
   "main": "src/index.js",
   "typings": "src/index.d.ts",

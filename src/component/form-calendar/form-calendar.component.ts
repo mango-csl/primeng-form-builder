@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {QuestionService} from "../../question.service";
 import {CalendarQuestion} from "./question-calendar";
+import {QuestionService} from "../../question.service";
 
 @Component({
   selector: 'app-form-calendar',

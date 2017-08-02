@@ -1,0 +1,9 @@
+<input #fileinput type="file" id="fileInput" (change)="onFileSelect($event)" accept=".jpg,.jpeg,.gif,.png,.bmp" [multiple]="question.multiple" style="display: none;">
+<button type="button" pButton class="button-main" (click)="onChooseClick($event,fileinput)" label="图片选择"></button>
+<button *ngIf="question.files.length" type="button" pButton class="button-main" (click)="cancel()" label="清除"></button>
+<ul *ngIf="question.files.length">
+  <li *ngFor="let file of question.files; let i=index">
+    <img [id]="'img' + i" height="48px" [src]="question.imageUrl" alt="logo"/>
+    {{file.name}} - {{file.size}} bytes
+  </li>
+</ul>

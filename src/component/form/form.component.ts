@@ -33,31 +33,38 @@ export class FormComponent implements OnInit {
                     data.value = null;
                     data.readonly = false;
                     data.validateErrors = '';
+                    data.parent = this.questions;
                 });
                 break;
             case 'edit':
                 this.questions.forEach(data => {
                     data.value = this.operateOption.data[data.key];
                     data.readonly = false;
-                    data.validateErrors = this.validate(data);
+                    data.parent = this.questions;
                 });
                 break;
+        }
+        if (this.operateOption.type == 'edit') {//值都赋进去后再验证
+            this.beforSubmit(this.questions);
         }
     }
 
     // 表单赋值前验证
-    validate(data: QuestionBase<any>): string {
-        let text: string = ''
-        if (data.required || data.validateFn.length > 0) {
-            text = this.qS.beiginValidate(data);
-        }
-        return text;
-    }
+    // validate(data:QuestionBase<any>){
+    //   // let text:string = ''
+    //   if(data.required|| data.validateFn.length > 0){
+    //     data.validateErrors = this.qS.beiginValidate(data);
+    //       // text = this.qS.beiginValidate(data);
+    //   }
+    //   // return text;
+    // }
 
     //表单提交前验证
-    beforSubmit() {
-        for (const item of this.questions) {
-            item.validateErrors = this.validate(item);
+    beforSubmit(questions: QuestionBase<any>[]) {
+        for (const item of questions) {
+            // item.validateErrors =
+            //   this.validate(item);
+            this.qS.beiginValidate(item);
         }
     }
 
@@ -87,10 +94,11 @@ export class FormComponent implements OnInit {
         //     return false;
         //   }
         // }
-        this.beforSubmit();
+        this.beforSubmit(this.questions);
         if (this.formState()) {
             this.submitData.emit(this.getFormData());
         } else {
+            // this.msgService.showError("表单错误", "验证未通过");
             console.error("表单错误", "验证未通过");
         }
     }

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {QuestionService} from "../../question.service";
 import {RadiobuttonQuestion} from "./question-radiobutton";
+import {QuestionService} from "../../question.service";
 
 @Component({
   selector: 'app-form-radiobutton',
@@ -15,8 +15,10 @@ export class FormRadiobuttonComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(this.question.items.length > 0){
-      this.question.value = this.question.items[0].value;
+    if(this.qS.judgeIsEmpty(this.question.value)){
+      if(this.question.items.length > 0){
+        this.question.value = this.question.items[0].value;
+      }
     }
   }
 

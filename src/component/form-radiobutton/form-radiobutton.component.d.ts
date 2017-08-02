@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
-import { QuestionService } from "../../question.service";
 import { RadiobuttonQuestion } from "./question-radiobutton";
+import { QuestionService } from "../../question.service";
 export declare class FormRadiobuttonComponent implements OnInit {
     private qS;
     question: RadiobuttonQuestion;

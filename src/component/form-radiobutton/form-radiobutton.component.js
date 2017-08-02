@@ -10,15 +10,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var question_service_1 = require("../../question.service");
 var question_radiobutton_1 = require("./question-radiobutton");
+var question_service_1 = require("../../question.service");
 var FormRadiobuttonComponent = (function () {
     function FormRadiobuttonComponent(qS) {
         this.qS = qS;
     }
     FormRadiobuttonComponent.prototype.ngOnInit = function () {
-        if (this.question.items.length > 0) {
-            this.question.value = this.question.items[0].value;
+        if (this.qS.judgeIsEmpty(this.question.value)) {
+            if (this.question.items.length > 0) {
+                this.question.value = this.question.items[0].value;
+            }
         }
     };
     Object.defineProperty(FormRadiobuttonComponent.prototype, "value", {

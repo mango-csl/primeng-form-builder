@@ -14,4 +14,5 @@ export class FormElementComponent implements OnInit {
   }
 
   @Input() question: QuestionBase<any>;
+  // @Input() form: FormGroup;
 }

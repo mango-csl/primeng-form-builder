@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var question_service_1 = require("../../question.service");
 var question_calendar_1 = require("./question-calendar");
+var question_service_1 = require("../../question.service");
 var FormCalendarComponent = (function () {
     function FormCalendarComponent(qS) {
         this.qS = qS;

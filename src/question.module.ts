@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }   from '@angular/forms';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+
 import {
   FormComponent,
   FormCalendarComponent,
@@ -12,7 +12,8 @@ import {
   FormDropdownComponent,
   FormMultiselectComponent,
   FormImageComponent,
-  FormContextmenuComponent
+  FormContextmenuComponent,
+  FormFileComponent
 } from './component';
 
 const NGA_COMPONENTS = [
@@ -25,7 +26,8 @@ const NGA_COMPONENTS = [
   FormDropdownComponent,
   FormMultiselectComponent,
   FormImageComponent,
-  FormContextmenuComponent
+  FormContextmenuComponent,
+  FormFileComponent
 ]
 
 import {QuestionService} from "./question.service";
@@ -35,7 +37,6 @@ import {PrimengModule} from "./primeng/primeng.module";
   imports: [
     CommonModule,
     FormsModule,
-    BrowserAnimationsModule,
     PrimengModule
   ],
   exports: [

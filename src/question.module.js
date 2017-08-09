@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var forms_1 = require("@angular/forms");
-var animations_1 = require("@angular/platform-browser/animations");
 var component_1 = require("./component");
 var NGA_COMPONENTS = [
     component_1.FormComponent,
@@ -21,7 +20,8 @@ var NGA_COMPONENTS = [
     component_1.FormDropdownComponent,
     component_1.FormMultiselectComponent,
     component_1.FormImageComponent,
-    component_1.FormContextmenuComponent
+    component_1.FormContextmenuComponent,
+    component_1.FormFileComponent
 ];
 var question_service_1 = require("./question.service");
 var primeng_module_1 = require("./primeng/primeng.module");
@@ -35,7 +35,6 @@ FormBuilderModule = __decorate([
         imports: [
             common_1.CommonModule,
             forms_1.FormsModule,
-            animations_1.BrowserAnimationsModule,
             primeng_module_1.PrimengModule
         ],
         exports: NGA_COMPONENTS.slice(),
